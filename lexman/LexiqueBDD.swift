@@ -98,6 +98,27 @@ class LexiqueBDD {
         return (false);
     }
     
+    public static func deleteLexique(lexique: Lexique) -> Bool {
+        return (LexiqueBDD.deleteLexique(id: lexique.getId()));
+    }
+    
+    public static func deleteLexique(id: Int64?) -> Bool {
+        if (id != nil && id! >= 0) {
+            do {
+                let lexique = LexiqueBDD.table.filter(LexiqueBDD.id == id!);
+                
+                try LexiqueBDD.bdd.run(lexique.delete());
+                
+                return (true);
+            }
+            catch {
+                errorHandling(error: error);
+            }
+        }
+        
+        return (false);
+    }
+    
     public static func getTermesOfLexique(lexique: Lexique) -> [Terme] {
         var termes: [Terme] = [];
         
