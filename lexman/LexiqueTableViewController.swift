@@ -55,7 +55,7 @@ class LexiqueTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "editerLexique") {
-            let destination = segue.destination as! AjouterLexiqueViewController;
+            let destination = segue.destination as! EditerLexiqueViewController;
             
             destination.lexique = (sender as! Lexique);
         }

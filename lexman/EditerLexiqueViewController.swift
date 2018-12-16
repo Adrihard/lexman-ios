@@ -9,7 +9,7 @@
 import UIKit
 import Eureka
 
-class AjouterLexiqueViewController: FormViewController {
+class EditerLexiqueViewController: FormViewController {
     
     private let id_titre            = "titreLexique";
     private let id_descriptif       = "descriptifLexique";

@@ -14,7 +14,7 @@
 		3A1F132721C44A9900EE17A5 /* TermeBDD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1F132621C44A9900EE17A5 /* TermeBDD.swift */; };
 		3A9F5D9321C504C2000AED55 /* LexiqueBDD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9F5D9221C504C2000AED55 /* LexiqueBDD.swift */; };
 		3A9F5D9621C534CD000AED55 /* LexiqueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9F5D9521C534CD000AED55 /* LexiqueTableViewController.swift */; };
-		3A9F5D9821C53A49000AED55 /* AjouterLexiqueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9F5D9721C53A49000AED55 /* AjouterLexiqueViewController.swift */; };
+		3A9F5D9821C53A49000AED55 /* EditerLexiqueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9F5D9721C53A49000AED55 /* EditerLexiqueViewController.swift */; };
 		3AA3EECE21C2AD30004DD7E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA3EECD21C2AD30004DD7E8 /* AppDelegate.swift */; };
 		3AA3EED021C2AD30004DD7E8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA3EECF21C2AD30004DD7E8 /* ViewController.swift */; };
 		3AA3EED321C2AD30004DD7E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3AA3EED121C2AD30004DD7E8 /* Main.storyboard */; };
@@ -51,7 +51,7 @@
 		3A1F132621C44A9900EE17A5 /* TermeBDD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermeBDD.swift; sourceTree = "<group>"; };
 		3A9F5D9221C504C2000AED55 /* LexiqueBDD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiqueBDD.swift; sourceTree = "<group>"; };
 		3A9F5D9521C534CD000AED55 /* LexiqueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LexiqueTableViewController.swift; sourceTree = "<group>"; };
-		3A9F5D9721C53A49000AED55 /* AjouterLexiqueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AjouterLexiqueViewController.swift; sourceTree = "<group>"; };
+		3A9F5D9721C53A49000AED55 /* EditerLexiqueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditerLexiqueViewController.swift; sourceTree = "<group>"; };
 		3AA3EECA21C2AD30004DD7E8 /* LexMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LexMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA3EECD21C2AD30004DD7E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3AA3EECF21C2AD30004DD7E8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 				3AA3EECD21C2AD30004DD7E8 /* AppDelegate.swift */,
 				3AA3EECF21C2AD30004DD7E8 /* ViewController.swift */,
 				3A9F5D9521C534CD000AED55 /* LexiqueTableViewController.swift */,
-				3A9F5D9721C53A49000AED55 /* AjouterLexiqueViewController.swift */,
+				3A9F5D9721C53A49000AED55 /* EditerLexiqueViewController.swift */,
 				3AA3EED121C2AD30004DD7E8 /* Main.storyboard */,
 				3A1F131F21C43C3C00EE17A5 /* Terme.swift */,
 				3A1F132121C4466400EE17A5 /* Lexique.swift */,
@@ -415,7 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AA3EED021C2AD30004DD7E8 /* ViewController.swift in Sources */,
-				3A9F5D9821C53A49000AED55 /* AjouterLexiqueViewController.swift in Sources */,
+				3A9F5D9821C53A49000AED55 /* EditerLexiqueViewController.swift in Sources */,
 				3A9F5D9321C504C2000AED55 /* LexiqueBDD.swift in Sources */,
 				3A1F132421C446EA00EE17A5 /* BDD.swift in Sources */,
 				3A1F132721C44A9900EE17A5 /* TermeBDD.swift in Sources */,
