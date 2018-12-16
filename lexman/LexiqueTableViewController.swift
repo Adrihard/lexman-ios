@@ -55,17 +55,21 @@ class LexiqueTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        //Cas où on décide de supprimer un lexique
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            let lexique = lexiques[indexPath.row];
+            
+            //On enclenche la suppresion du lexique de la BDD
+            if (LexiqueBDD.deleteLexique(lexique: lexique)) {
+                
+                //Si ça marche, on retire la ligne correspondante de la vue
+                lexiques.remove(at: indexPath.row);
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        }
     }
-    */
 
     /*
     // Override to support rearranging the table view.
