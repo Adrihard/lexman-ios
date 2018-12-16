@@ -10,19 +10,29 @@ import UIKit
 import Eureka
 
 class AjouterLexiqueViewController: FormViewController {
-
-    private let id_titre          = "titreLexique";
-    private let id_descriptif   = "descriptifLexique";
+    
+    private let id_titre            = "titreLexique";
+    private let id_descriptif       = "descriptifLexique";
+    
+    @IBOutlet var navigatonItem: UINavigationItem!
+    
+    public  var lexique: Lexique?   = nil;
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if (lexique != nil) {
+            navigationItem.title = "Éditer un lexique";
+        }
+        
         form
             +++ Section("Infos de base")
                 <<< TextRow(id_titre){
-                    $0.title       = "Nom"
-                    $0.placeholder = "Obligatoire"
-                    $0.add(rule: RuleRequired())
-                    $0.validationOptions = .validatesOnChange
+                    $0.title       = "Nom";
+                    $0.placeholder = "Obligatoire";
+                    $0.value       = lexique?.getTitre();
+                    $0.add(rule: RuleRequired());
+                    $0.validationOptions = .validatesOnChange;
                 }
                 //Le nom de la ligne s'affiche en rouge si le nom du lexique n'est pas renseigné.
                 .cellUpdate { cell, row in
@@ -32,8 +42,9 @@ class AjouterLexiqueViewController: FormViewController {
                 }
             +++ Section("Infos supplémentaires")
                 <<< TextAreaRow(id_descriptif) {
-                    $0.title       = "Description"
+                    $0.title       = "Description";
                     $0.placeholder = "Vous pouvez mettre une description"
+                    $0.value = lexique?.getDescriptif();
                 }
 
     }
@@ -55,12 +66,24 @@ class AjouterLexiqueViewController: FormViewController {
                     //On s'assure que le titre est bien présent
                     //(c'est redondant avec la règle du formulaire, mais on sait jamais).
                     if (titre != nil) {
-                        return (
-                            LexiqueBDD.insertLexique(
+                        
+                        //Si aucun lexique n'a été passé, c'est qu'on est en train de créer un nouveau.
+                        //Dans ce cas, on lance une insertion
+                        if (lexique == nil) {
+                            return (LexiqueBDD.insert(
                                 titre: titre as! String,
                                 descriptif: descriptif as! String?
-                            )
-                        );
+                            ));
+                        }
+                            
+                        //Sinon, c'est qu'on cherche à mettre à jour un lexique déjà existant.
+                        else {
+                            return(LexiqueBDD.update(
+                                id:         lexique!.getId(),
+                                titre:      titre as! String,
+                                descriptif: descriptif as! String?
+                            ))
+                        }
                     }
                 }
                 return (false);

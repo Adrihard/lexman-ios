@@ -17,15 +17,17 @@ class LexiqueTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //On crée les tables "lexiques" et "termes" dans le cas où elles n'existeraient pas.
-        LexiqueBDD.createTableIfNotExists();
-        TermeBDD.createTableIfNotExists();
-        
-        //On obtient la liste des lexiques depuis la BDD.
-        lexiques = LexiqueBDD.selectAll();
-        
-        //On ajoute le bouton Edit qui permettra de supprimer des lexiques.
-        navigationItem.leftBarButtonItem = editButtonItem;
+        do {
+            //On crée les tables "lexiques" et "termes" dans le cas où elles n'existeraient pas.
+            try LexiqueBDD.createTableIfNotExists();
+            TermeBDD.createTableIfNotExists();
+            
+            //On obtient la liste des lexiques depuis la BDD.
+            try lexiques = LexiqueBDD.selectAll();
+        }
+        catch {
+            print(error);
+        }
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -46,7 +48,39 @@ class LexiqueTableViewController: UITableViewController {
 
         return cell
     }
-
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        performSegue(withIdentifier: "editerLexique", sender: lexiques[indexPath.row]);
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "editerLexique") {
+            let destination = segue.destination as! AjouterLexiqueViewController;
+            
+            destination.lexique = (sender as! Lexique);
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        //Cas où on décide de supprimer un lexique
+        if editingStyle == .delete {
+            let lexique = lexiques[indexPath.row];
+            
+            //On enclenche la suppresion du lexique de la BDD
+            if (LexiqueBDD.delete(lexique: lexique)) {
+                
+                //Si ça marche, on retire la ligne correspondante de la vue
+                lexiques.remove(at: indexPath.row);
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        }
+    }
+    
+    @IBAction func boutonEdit(_ sender: Any) {
+        self.setEditing(!self.isEditing, animated: true);
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -55,21 +89,7 @@ class LexiqueTableViewController: UITableViewController {
     }
     */
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        //Cas où on décide de supprimer un lexique
-        if editingStyle == .delete {
-            let lexique = lexiques[indexPath.row];
-            
-            //On enclenche la suppresion du lexique de la BDD
-            if (LexiqueBDD.deleteLexique(lexique: lexique)) {
-                
-                //Si ça marche, on retire la ligne correspondante de la vue
-                lexiques.remove(at: indexPath.row);
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-        }
-    }
+
 
     /*
     // Override to support rearranging the table view.
@@ -86,14 +106,6 @@ class LexiqueTableViewController: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
