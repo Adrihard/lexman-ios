@@ -24,6 +24,7 @@ class AjouterLexiqueViewController: FormViewController {
                     $0.add(rule: RuleRequired())
                     $0.validationOptions = .validatesOnChange
                 }
+                //Le nom de la ligne s'affiche en rouge si le nom du lexique n'est pas renseigné.
                 .cellUpdate { cell, row in
                     if (!row.isValid) {
                         cell.titleLabel?.textColor = .red
@@ -39,13 +40,20 @@ class AjouterLexiqueViewController: FormViewController {
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         switch (identifier) {
+            
+            //Cas où on valide la création du lexique.
             case "validerCreationLexique":
+                
+                //On vérifie qu'il n'y a pas d'erreurs dans le formulaire.
                 if (self.form.validate().isEmpty) {
-                    let values = self.form.values();
                     
+                    //Si tout est bon, on récupère les valeurs qui nous intéressent.
+                    let values = self.form.values();
                     let titre = values[id_titre];
                     let descriptif  = values[id_descriptif];
                     
+                    //On s'assure que le titre est bien présent
+                    //(c'est redondant avec la règle du formulaire, mais on sait jamais).
                     if (titre != nil) {
                         return (
                             LexiqueBDD.insertLexique(
