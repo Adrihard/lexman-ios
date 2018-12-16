@@ -10,22 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="TeA-Ty-7vS">
-            <objects>
-                <navigationController id="74k-Il-hkE" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="XW7-OF-zFp">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="gqe-fP-EK0" kind="relationship" relationship="rootViewController" id="Khe-Xf-G6E"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DmT-rd-01n" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1790" y="-73"/>
-        </scene>
         <!--Lexiques-->
         <scene sceneID="p0w-7t-faV">
             <objects>
@@ -35,15 +19,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="celluleLexique" textLabel="obb-0p-b1D" style="IBUITableViewCellStyleDefault" id="tGE-eT-Kqk">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="celluleLexique" editingAccessoryType="detailButton" textLabel="obb-0p-b1D" style="IBUITableViewCellStyleDefault" id="tGE-eT-Kqk">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tGE-eT-Kqk" id="aPL-8B-DiR">
-                                    <rect key="frame" x="0.0" y="0.0" width="307" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="obb-0p-b1D">
-                                            <rect key="frame" x="16" y="0.0" width="291" height="43.5"/>
+                                            <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -59,28 +43,36 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Lexiques" id="1DS-l7-ZH2">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="kbD-4d-uls"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="kbD-4d-uls">
+                            <connections>
+                                <action selector="boutonEdit:" destination="CfE-ZO-svI" id="Rnr-bA-qWv"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="vgR-4Y-2Od">
                             <connections>
-                                <segue destination="74k-Il-hkE" kind="show" id="yXU-Vt-Kly"/>
+                                <segue destination="gqe-fP-EK0" kind="show" identifier="creerLexique" id="btm-Qv-V5X"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="gqe-fP-EK0" kind="show" identifier="editerLexique" id="glU-an-yg4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yqw-hj-Hop" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="753" y="-73"/>
         </scene>
-        <!--Créer un nouveau lexique-->
+        <!--Nouveau lexique-->
         <scene sceneID="qbn-8y-6ag">
             <objects>
-                <viewController title="Créer un nouveau lexique" id="gqe-fP-EK0" customClass="AjouterLexiqueViewController" customModule="LexMan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Nouveau lexique" id="gqe-fP-EK0" customClass="AjouterLexiqueViewController" customModule="LexMan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u6P-vg-vbv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="Fhd-yd-dJ0"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Nouveau lexique" id="2MT-ll-HYn">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="idn-SS-teT">
                             <connections>
@@ -93,14 +85,19 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="navigatonItem" destination="2MT-ll-HYn" id="Ah4-9i-wo8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VJD-b2-dSp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="753" y="-1143"/>
+            <point key="canvasLocation" x="1927" y="-73"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="G3n-i3-fsF">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QQg-fT-Npu" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="GCN-jH-sdw" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mJK-nf-C2A">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -110,13 +107,12 @@
                         <segue destination="CfE-ZO-svI" kind="relationship" relationship="rootViewController" id="rO0-n7-CjL"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QQg-fT-Npu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-191" y="-73"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Khe-Xf-G6E"/>
-        <segue reference="YoK-7Q-iJn"/>
+        <segue reference="glU-an-yg4"/>
+        <segue reference="rO0-n7-CjL"/>
     </inferredMetricsTieBreakers>
 </document>
