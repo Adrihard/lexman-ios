@@ -8,7 +8,11 @@
 
 import UIKit
 
-class Lexique{
+class Lexique : CustomStringConvertible {
+    
+    public var description: String {
+        return ("Valeurs du lexique : {id: \(String(describing: self.id)), titre: \(self.titre), descriptif: \(String(describing: self.descriptif))}");
+    };
     
     private var id:         Int64?;
     private var titre:      String;
