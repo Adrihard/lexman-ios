@@ -7,7 +7,7 @@ target 'lexman' do
 
   # Pods for lexman
   pod 'SQLite.swift', '~> 0.11.5'
-  pod 'Eureka'
+  pod 'Eureka', '~> 4.3.0'
 
 
   target 'lexmanTests' do
