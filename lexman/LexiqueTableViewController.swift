@@ -21,8 +21,11 @@ class LexiqueTableViewController: UITableViewController {
         LexiqueBDD.createTableIfNotExists();
         TermeBDD.createTableIfNotExists();
         
-        //On obtient la liste des lexiques depuis la BDD
+        //On obtient la liste des lexiques depuis la BDD.
         lexiques = LexiqueBDD.selectAll();
+        
+        //On ajoute le bouton Edit qui permettra de supprimer des lexiques.
+        navigationItem.leftBarButtonItem = editButtonItem;
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
