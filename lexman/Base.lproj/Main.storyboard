@@ -65,7 +65,7 @@
         <!--Nouveau lexique-->
         <scene sceneID="qbn-8y-6ag">
             <objects>
-                <viewController title="Nouveau lexique" id="gqe-fP-EK0" customClass="AjouterLexiqueViewController" customModule="LexMan" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Nouveau lexique" id="gqe-fP-EK0" customClass="EditerLexiqueViewController" customModule="LexMan" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u6P-vg-vbv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,6 +113,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="glU-an-yg4"/>
-        <segue reference="rO0-n7-CjL"/>
+        <segue reference="YoK-7Q-iJn"/>
     </inferredMetricsTieBreakers>
 </document>
