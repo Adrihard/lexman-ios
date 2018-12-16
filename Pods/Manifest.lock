@@ -1,0 +1,22 @@
+PODS:
+  - Eureka (4.3.0)
+  - SQLite.swift (0.11.5):
+    - SQLite.swift/standard (= 0.11.5)
+  - SQLite.swift/standard (0.11.5)
+
+DEPENDENCIES:
+  - Eureka (~> 4.3.0)
+  - SQLite.swift (~> 0.11.5)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Eureka
+    - SQLite.swift
+
+SPEC CHECKSUMS:
+  Eureka: 6d711cb30ca333b4bc893110285a722ae3840114
+  SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
+
+PODFILE CHECKSUM: 7a9437fd7daeccd23068582a53ad42aa39f97dd7
+
+COCOAPODS: 1.5.3
