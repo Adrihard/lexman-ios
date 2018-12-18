@@ -18,12 +18,14 @@ class EditerLexiqueViewController: FormViewController {
     
     public  var lexique: Lexique?   = nil;
     
+    private var valide_titre = false;
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad();
         
-        if (lexique != nil) {
-            navigationItem.title = "Éditer un lexique";
-        }
+        navigationItem.title = valide_titre
+            ? "Éditer le lexique"
+            : "Nouveau lexique";
         
         form
             +++ Section("Infos de base")
@@ -36,6 +38,8 @@ class EditerLexiqueViewController: FormViewController {
                 }
                 //Le nom de la ligne s'affiche en rouge si le nom du lexique n'est pas renseigné.
                 .cellUpdate { cell, row in
+                    self.valide_titre = row.isValid;
+                    self.updateSaveButton();
                     if (!row.isValid) {
                         cell.titleLabel?.textColor = .red
                     }
@@ -46,7 +50,6 @@ class EditerLexiqueViewController: FormViewController {
                     $0.placeholder = "Vous pouvez mettre une description"
                     $0.value = lexique?.getDescriptif();
                 }
-
     }
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
@@ -91,6 +94,10 @@ class EditerLexiqueViewController: FormViewController {
             default:
                 return (true);
         }
+    }
+    
+    private func updateSaveButton() {
+        self.navigationItem.rightBarButtonItem!.isEnabled = self.valide_titre;
     }
     
     /*
