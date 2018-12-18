@@ -143,22 +143,72 @@
                             <outlet property="delegate" destination="kab-tm-LjE" id="74Y-he-mfo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Lexiques" id="N4R-BC-e4q">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="ENI-J7-0cc">
+                    <navigationItem key="navigationItem" title="Définitions" id="N4R-BC-e4q">
+                        <leftBarButtonItems>
+                            <barButtonItem title="Item" image="Back chevron" landscapeImage="Back chevron" largeContentSizeImage="Back chevron" id="JnS-Vd-Wem">
+                                <connections>
+                                    <action selector="boutonRetour:" destination="kab-tm-LjE" id="ye3-PY-iew"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="edit" id="ENI-J7-0cc">
+                                <connections>
+                                    <action selector="boutonEdit:" destination="kab-tm-LjE" id="yz8-HH-s4N"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Thk-mf-VjF">
                             <connections>
-                                <action selector="boutonEdit:" destination="kab-tm-LjE" id="bwT-ks-kHq"/>
+                                <segue destination="9sU-og-w1J" kind="show" identifier="creerTerme" id="9a2-cI-pux"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Thk-mf-VjF"/>
                     </navigationItem>
+                    <connections>
+                        <segue destination="9sU-og-w1J" kind="show" identifier="editerTerme" id="nSL-0x-Kq0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SgO-kD-Elk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="753" y="805"/>
         </scene>
+        <!--Nouveau terme-->
+        <scene sceneID="oNQ-h1-5GE">
+            <objects>
+                <viewController title="Nouveau terme" id="9sU-og-w1J" customClass="EditerTermeViewController" customModule="LexMan" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="km8-BS-0QS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="y1o-ho-cO1"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Nouveau terme" id="kWB-vV-FWg">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="2EG-T9-QZ9">
+                            <connections>
+                                <action selector="boutonCancel:" destination="9sU-og-w1J" id="yZa-qL-jWA"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="kBG-eu-QxJ">
+                            <connections>
+                                <action selector="boutonSave:" destination="9sU-og-w1J" id="1k0-mV-cuX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="navigatonItem" destination="kWB-vV-FWg" id="86Q-MC-2lw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hf8-qd-mUV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1926" y="805"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="Back chevron" width="13" height="21"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="glU-an-yg4"/>
-        <segue reference="YoK-7Q-iJn"/>
+        <segue reference="nSL-0x-Kq0"/>
+        <segue reference="btm-Qv-V5X"/>
+        <segue reference="rO0-n7-CjL"/>
     </inferredMetricsTieBreakers>
 </document>
