@@ -8,11 +8,15 @@
 
 import UIKit
 
-class Terme {
+class Terme : CustomStringConvertible{
     
     private var id:          Int64?;
     private var titre:       String;
     private var descriptif:  String;
+    
+    public var description: String {
+        return ("Valeurs du terme : {id: \(String(describing: self.id)), titre: \(self.titre), descriptif: \(String(self.descriptif))}");
+    };
     
     init(id: Int64?, titre: String, descriptif: String) {
         self.id         = id;
@@ -24,4 +28,11 @@ class Terme {
         return (self.id);
     }
     
+    public func getTitre() -> String {
+        return (self.titre);
+    }
+    
+    public func getDescriptif() -> String {
+        return (self.descriptif);
+    }
 }
