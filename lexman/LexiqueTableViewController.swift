@@ -10,9 +10,11 @@ import UIKit
 
 class LexiqueTableViewController: UITableViewController {
 
-    var lexiques: [Lexique] = [];
+    private var lexiques: [Lexique] = [];
     
-    let idCellule = "celluleLexique";
+    private let id_cellule          = "celluleLexique";
+    private let id_voirTermes       = "voirTermes";
+    private let id_editerLexique    = "editerLexique";
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +40,8 @@ class LexiqueTableViewController: UITableViewController {
         return (lexiques.count);
     }
 
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: idCellule, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: id_cellule, for: indexPath)
         
         let lexique = lexiques[indexPath.row];
         
@@ -50,13 +51,21 @@ class LexiqueTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        performSegue(withIdentifier: "editerLexique", sender: lexiques[indexPath.row]);
+        performSegue(withIdentifier: id_editerLexique, sender: lexiques[indexPath.row]);
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: id_voirTermes, sender: lexiques[indexPath.row])
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "editerLexique") {
+        if (segue.identifier == id_editerLexique) {
             let destination = segue.destination as! EditerLexiqueViewController;
             
+            destination.lexique = (sender as! Lexique);
+        }
+        else if (segue.identifier == id_voirTermes) {
+            let destination = segue.destination as! TermeTableViewController;
             destination.lexique = (sender as! Lexique);
         }
     }
@@ -80,32 +89,4 @@ class LexiqueTableViewController: UITableViewController {
     @IBAction func boutonEdit(_ sender: Any) {
         self.setEditing(!self.isEditing, animated: true);
     }
-    
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-
-
 }
