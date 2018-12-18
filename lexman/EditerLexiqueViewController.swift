@@ -1,5 +1,5 @@
 //
-//  AjouterLexiqueViewController.swift
+//  EditerLexiqueViewController.swift
 //  lexman
 //
 //  Created by Adrian Kalmar on 15/12/2018.
@@ -52,47 +52,48 @@ class EditerLexiqueViewController: FormViewController {
                 }
     }
     
-    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        switch (identifier) {
+    @IBAction func boutonCancel(_ sender: Any) {
+        //On se contente de fermer la vue.
+        self.navigationController?.popViewController(animated: true);
+    }
+    
+    @IBAction func boutonSave(_ sender: Any) {
+        //On vérifie qu'il n'y a pas d'erreurs dans le formulaire.
+        if (self.form.validate().isEmpty) {
             
-            //Cas où on valide la création du lexique.
-            case "validerCreationLexique":
+            //Si tout est bon, on récupère les valeurs qui nous intéressent.
+            let values = self.form.values();
+            let titre = values[id_titre];
+            let descriptif  = values[id_descriptif];
+            
+            //On s'assure que le titre est bien présent
+            //(c'est redondant avec la règle du formulaire, mais on sait jamais).
+            if (titre != nil) {
                 
-                //On vérifie qu'il n'y a pas d'erreurs dans le formulaire.
-                if (self.form.validate().isEmpty) {
+                //Si aucun lexique n'a été passé, c'est qu'on est en train de créer un nouveau.
+                //Dans ce cas, on lance une insertion
+                if (lexique == nil) {
+                    if (LexiqueBDD.insert(
+                        titre: titre as! String,
+                        descriptif: descriptif as! String?
+                    )) {
+                        //Si l'insertion fonctionne, on peut fermer cette vue.
+                        self.navigationController!.popViewController(animated: true)
+                    };
+                }
                     
-                    //Si tout est bon, on récupère les valeurs qui nous intéressent.
-                    let values = self.form.values();
-                    let titre = values[id_titre];
-                    let descriptif  = values[id_descriptif];
-                    
-                    //On s'assure que le titre est bien présent
-                    //(c'est redondant avec la règle du formulaire, mais on sait jamais).
-                    if (titre != nil) {
-                        
-                        //Si aucun lexique n'a été passé, c'est qu'on est en train de créer un nouveau.
-                        //Dans ce cas, on lance une insertion
-                        if (lexique == nil) {
-                            return (LexiqueBDD.insert(
-                                titre: titre as! String,
-                                descriptif: descriptif as! String?
-                            ));
-                        }
-                            
-                        //Sinon, c'est qu'on cherche à mettre à jour un lexique déjà existant.
-                        else {
-                            return(LexiqueBDD.update(
-                                id:         lexique!.getId(),
-                                titre:      titre as! String,
-                                descriptif: descriptif as! String?
-                            ))
-                        }
+                //Sinon, c'est qu'on cherche à mettre à jour un lexique déjà existant.
+                else {
+                    if (LexiqueBDD.update(
+                        id:         lexique!.getId(),
+                        titre:      titre as! String,
+                        descriptif: descriptif as! String?
+                    )) {
+                        //Si la mise à jour fonctionne, on peut fermer cette vue.
+                        self.navigationController!.popViewController(animated: true)
                     }
                 }
-                return (false);
-            
-            default:
-                return (true);
+            }
         }
     }
     

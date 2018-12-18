@@ -77,12 +77,12 @@
                     <navigationItem key="navigationItem" title="Nouveau lexique" id="2MT-ll-HYn">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="idn-SS-teT">
                             <connections>
-                                <segue destination="CfE-ZO-svI" kind="show" identifier="annulerCreationLexique" id="hgz-u4-odn"/>
+                                <action selector="boutonCancel:" destination="gqe-fP-EK0" id="72f-7X-j2y"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="vhH-3S-4k7">
                             <connections>
-                                <segue destination="CfE-ZO-svI" kind="show" identifier="validerCreationLexique" id="YoK-7Q-iJn"/>
+                                <action selector="boutonSave:" destination="gqe-fP-EK0" id="rLy-IJ-U0i"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -209,6 +209,5 @@
     <inferredMetricsTieBreakers>
         <segue reference="nSL-0x-Kq0"/>
         <segue reference="btm-Qv-V5X"/>
-        <segue reference="rO0-n7-CjL"/>
     </inferredMetricsTieBreakers>
 </document>

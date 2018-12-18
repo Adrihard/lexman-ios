@@ -23,9 +23,17 @@ class LexiqueTableViewController: UITableViewController {
             //On crée les tables "lexiques" et "termes" dans le cas où elles n'existeraient pas.
             try LexiqueBDD.createTableIfNotExists();
             TermeBDD.createTableIfNotExists();
-            
+        }
+        catch {
+            print(error);
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        do {
             //On obtient la liste des lexiques depuis la BDD.
             try lexiques = LexiqueBDD.selectAll();
+            tableView.reloadData();
         }
         catch {
             print(error);
