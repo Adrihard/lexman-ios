@@ -137,12 +137,14 @@ class LexiqueBDD {
     public static func getTermes(lexique: Lexique) throws -> [Terme] {
         let join = LexiqueBDD.table.join(
             TermeBDD.table,
-            on: LexiqueBDD.id == TermeBDD.lexique
+            on: LexiqueBDD.table[LexiqueBDD.id] == TermeBDD.lexique
         );
             
         let query = join.select(
-            TermeBDD.table[*]
-        )
+            TermeBDD.table[TermeBDD.id],
+            TermeBDD.table[TermeBDD.titre],
+            TermeBDD.table[TermeBDD.descriptif]
+        );
         
         let cursor = try bdd.prepare(query);
         
