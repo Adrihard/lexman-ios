@@ -138,7 +138,8 @@ class LexiqueBDD {
         let join = LexiqueBDD.table.join(
             TermeBDD.table,
             on: LexiqueBDD.table[LexiqueBDD.id] == TermeBDD.lexique
-        );
+        )
+        .filter(LexiqueBDD.table[LexiqueBDD.id] == lexique.getId()!);
             
         let query = join.select(
             TermeBDD.table[TermeBDD.id],
