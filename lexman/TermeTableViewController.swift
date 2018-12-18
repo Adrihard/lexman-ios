@@ -10,12 +10,23 @@ import UIKit
 
 class TermeTableViewController: UITableViewController {
 
-    var termes: [Terme] = [];
+    public var lexique: Lexique?    = nil;
+    public var termes:  [Terme]     = [];
     
     let idCellule = "celluleTerme";
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        do {
+            try termes = LexiqueBDD.getTermes(lexique: self.lexique!);
+            tableView.reloadData();
+        }
+        catch {
+            print(error);
+        }
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -37,15 +48,21 @@ class TermeTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "editerTerme", sender: termes[indexPath.row]);
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "editerTerme") {
+        if (segue.identifier == "editerTerme" ||
+            segue.identifier == "creerTerme") {
+            
             let destination = segue.destination as! EditerTermeViewController;
             
-            destination.terme = (sender as! Terme);
+            if (segue.identifier == "editerTerme") {
+                destination.terme = (sender as! Terme);
+            }
+            
+            destination.lexique = self.lexique!;
         }
     }
     
@@ -55,7 +72,7 @@ class TermeTableViewController: UITableViewController {
         if editingStyle == .delete {
             let terme = termes[indexPath.row];
             
-            //On enclenche la suppresion du lexique de la BDD
+            //On enclenche la suppresion du terme de la BDD
             if (TermeBDD.delete(terme: terme)) {
                 
                 //Si ça marche, on retire la ligne correspondante de la vue
@@ -63,6 +80,10 @@ class TermeTableViewController: UITableViewController {
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }
+    }
+    
+    @IBAction func boutonRetour(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true);
     }
     
     @IBAction func boutonEdit(_ sender: Any) {
