@@ -23,9 +23,9 @@ class EditerLexiqueViewController: FormViewController {
     override func viewDidLoad() {
         super.viewDidLoad();
         
-        navigationItem.title = valide_titre
-            ? "Éditer le lexique"
-            : "Nouveau lexique";
+        navigationItem.title = (lexique == nil)
+            ? "Nouveau lexique"
+            : "Détails du lexique";
         
         form
             +++ Section("Infos de base")

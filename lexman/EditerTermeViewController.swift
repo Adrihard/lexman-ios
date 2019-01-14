@@ -30,7 +30,7 @@ class EditerTermeViewController: FormViewController {
         
         navigationItem.title = (terme == nil)
             ? "Nouveau terme"
-            : terme!.getTitre();
+            : "Détails du terme";
         
         form
             +++ Section("Infos de base")
